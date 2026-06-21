@@ -50,7 +50,8 @@ instructions/
 │   ├── dev-senior.md               ← Fases: architecture (validação), development, operation
 │   ├── qa.md                       ← Fase: testing
 │   ├── devops.md                   ← Fase: deployment
-│   └── sre.md                      ← Fase: operation
+│   ├── sre.md                      ← Fase: operation
+│   └── cleanup.md                  ← Qualquer fase, sob demanda — varre e limpa o repositório
 │
 └── standards.md                    ← Padrões de código, logging, CV, git, docs
 ```
@@ -128,6 +129,9 @@ main.py             # Entry point — orquestrador puro, sem try/except
 
 **"O usuário quer mudar o escopo"**
 → Abrir uma CR em `docs/6_CHANGE_CONTROL.md` antes de implementar qualquer coisa.
+
+**"O repositório está acumulando arquivos sem uso / workspace sujo"**
+→ Invocar persona `cleanup` (`instructions/personas/cleanup.md`). Fluxo: varrer → classificar → apresentar relatório → aguardar confirmação → agir.
 
 **"Não sei em que fase o projeto está"**
 → Leia `PROJECT_STATUS.md`. Se ausente ou vazio, trate como `onboarding`.
