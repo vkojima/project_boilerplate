@@ -4,14 +4,31 @@
 
 ---
 
-## Início Rápido
+## Primeiro Passo — Onboarding
+
+Antes de qualquer código, conduza o kickoff de planejamento:
+
+```
+instructions/onboarding.md
+```
+
+O onboarding guia uma sessão estruturada (12 seções) que produz:
+- `docs/0_ESCOPO.md` — escopo, requisitos e critérios de aceite
+- `docs/1_RISKS.md` — registro de riscos com estratégias
+- `PROJECT_STATUS.md` — fase atual e cronograma macro inicializados
+
+Só avance para desenvolvimento após o checklist do onboarding estar completo.
+
+---
+
+## Início Rápido (após onboarding)
 
 ```bash
 # 1. Instalar dependências
 pip install -r requirements.txt
 
 # 2. Configurar
-cp configs/config.yaml configs/config.yaml   # editar conforme o ambiente
+# editar configs/config.yaml conforme o ambiente
 
 # 3. Rodar
 python main.py
