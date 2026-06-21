@@ -6,7 +6,35 @@
 
 ---
 
-## 1. Padrões de Código (Python)
+## 1. Ambiente Python (.venv)
+
+Todo projeto Python usa **ambiente virtual isolado** em `.venv/` na raiz do projeto.
+
+```powershell
+# Criar (uma vez por projeto, após clonar)
+scripts\setup.bat           # Windows — cria .venv e instala requirements.txt
+
+# Ativar manualmente para desenvolvimento
+.\.venv\Scripts\Activate.ps1        # PowerShell
+.\.venv\Scripts\activate.bat        # CMD
+source .venv/bin/activate           # Linux / macOS
+
+# Instalar / atualizar dependências
+pip install -r requirements.txt
+pip install nova-lib                # adicionar ao requirements.txt depois
+```
+
+| Regra | Detalhe |
+|-------|---------|
+| **Sempre `.venv/`** | Na raiz do projeto. Nunca em subpastas ou fora do projeto. |
+| **Nunca commitar** | `.venv/` está no `.gitignore`. Nunca versionar o ambiente. |
+| **`requirements.txt` é a fonte de verdade** | Toda dependência nova vai para `requirements.txt` imediatamente. |
+| **`start.bat` usa o `.venv`** | Nunca apontar para o Python global em scripts de produção. |
+| **Verificar antes de rodar** | Se `.venv/` não existe, `start.bat` aborta e instrui a rodar `setup.bat`. |
+
+---
+
+## 2. Padrões de Código (Python)
 
 | Regra | Detalhe |
 |-------|---------|

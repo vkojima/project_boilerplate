@@ -23,14 +23,21 @@ Só avance para desenvolvimento após o checklist do onboarding estar completo.
 
 ## Início Rápido (após onboarding)
 
-```bash
-# 1. Instalar dependências
-pip install -r requirements.txt
+```bat
+:: 1. Criar .venv e instalar dependências
+scripts\setup.bat
 
-# 2. Configurar
-# editar configs/config.yaml conforme o ambiente
+:: 2. Configurar
+:: editar configs/config.yaml conforme o ambiente
 
-# 3. Rodar
+:: 3. Rodar
+scripts\start.bat
+```
+
+Para ativar o ambiente manualmente (desenvolvimento):
+```powershell
+# PowerShell
+.\.venv\Scripts\Activate.ps1
 python main.py
 ```
 
@@ -103,6 +110,7 @@ Após clonar:
 2. Preencha `docs/0_ESCOPO.md`.
 3. Atualize `PROJECT_STATUS.md` com a data de início.
 4. Edite este `README.md`.
+5. Execute `scripts\setup.bat` para criar o `.venv` e instalar dependências.
 
 ---
 
