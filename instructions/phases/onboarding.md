@@ -8,6 +8,8 @@ Respostas vagas devem ser questionadas — clareza agora evita retrabalho depois
 
 **Ao concluir todas as seções, gere os artefatos listados no final.**
 
+> Para projetos já iniciados sem este padrão, use `instructions/phases/retrofit.md` em vez deste arquivo.
+
 ---
 
 ## Como conduzir este onboarding

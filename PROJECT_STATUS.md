@@ -12,7 +12,7 @@
 | **Fase** | `onboarding` |
 | **Desde** | DD-MM-YYYY |
 | **Personas ativas** | `architect` |
-| **Instrução da fase** | `instructions/onboarding.md` |
+| **Instrução da fase** | `instructions/phases/onboarding.md` |
 
 ---
 
@@ -20,7 +20,8 @@
 
 | # | Fase | Instrução | Personas |
 |---|------|-----------|---------|
-| — | `onboarding` | `instructions/onboarding.md` | architect |
+| — | `onboarding` | `instructions/phases/onboarding.md` | architect |
+| — | `retrofit` *(se mid-flight)* | `instructions/phases/retrofit.md` | architect |
 | 00 | `inception` | `instructions/phases/00_inception.md` | architect |
 | 01 | `architecture` | `instructions/phases/01_architecture.md` | architect · dev-senior |
 | 02 | `development` | `instructions/phases/02_development.md` | dev-senior |
@@ -78,7 +79,8 @@
 
 ## Checklist da Fase Atual — `onboarding`
 
-> Checklist completo em `instructions/onboarding.md`
+> Checklist completo em `instructions/phases/onboarding.md`
+> Para projetos já iniciados: use `instructions/phases/retrofit.md`
 
 - [ ] Seção 1 — Identidade do projeto
 - [ ] Seção 2 — Problema de negócio

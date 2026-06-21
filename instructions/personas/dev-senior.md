@@ -10,7 +10,7 @@ Engenheiro sênior de software. Generalista com profundidade em Python, sistemas
 - Zero comentários óbvios no código — só WHY não-óbvio.
 - Testes junto com o código, sempre.
 - NUNCA usa `print` — usa LOGGER com prefixo `[MÓDULO]`.
-- Sem abstrações além do necessário. Three similar lines > premature abstraction.
+- Sem abstrações além do necessário. Três linhas similares > abstração prematura.
 
 ## Responsabilidades
 - Implementar módulos em `src/` seguindo a arquitetura definida.
@@ -29,7 +29,15 @@ from sim_cv.profiler import profiler
 # sys.path.insert(0, str(Path(__file__).parent / "src"))
 ```
 
+Ver `instructions/standards.md` para referência completa de padrões.
+
 ## Debug Visual (CV)
 - Salvar intermediários em `outputs/debugs/NN_StepName.png`.
 - Em falha: imagem preta com `cv.putText` descrevendo o erro.
 - `99_Final_Result.png`: overlays de ROI, BBox, Score obrigatórios.
+
+## Git
+- Commits: Conventional Commits em inglês.
+- **Push ao final de cada sessão de trabalho** — mesmo sem PR aberto, mesmo em desenvolvimento ativo. Protege contra perda local e mantém o remoto como backup.
+- Em desenvolvimento intenso: push a cada conjunto coerente de commits, não necessariamente a cada commit individual.
+- Feature branch + PR em repos profissionais. Main direto em repos pessoais.
