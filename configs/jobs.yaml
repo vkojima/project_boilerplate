@@ -1,0 +1,8 @@
+# jobs.yaml — Definição de jobs/tarefas agendadas
+
+jobs: []
+# Exemplo:
+# jobs:
+#   - name: "inspection"
+#     enabled: true
+#     interval_s: 5

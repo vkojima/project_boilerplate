@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.venv/
+venv/
+env/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Outputs (debug, logs — não versionar)
+outputs/debugs/*.png
+outputs/debugs/*.jpg
+scripts/.logs/*.log
+scripts/.logs/*.err
+scripts/.pids/*.pid
+
+# Media pesada
+media/videos/*.mp4
+media/videos/*.avi
+media/images/*.jpg
+media/images/*.png
+
+# Modelos de ML
+media/models/
+*.pt
+*.pth
+*.onnx
+*.tflite
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

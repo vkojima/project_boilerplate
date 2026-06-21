@@ -1,0 +1,12 @@
+# config.yaml — Configuração principal do projeto
+# Alterar sem reiniciar (hot reload habilitado em produção)
+
+project:
+  name: "project-name"
+  version: "0.1.0"
+  debug: false
+
+system:
+  loop_interval_ms: 100
+  log_level: "INFO"       # DEBUG | INFO | WARNING | ERROR
+  log_file: null          # null = somente console | "scripts/.logs/app.log"

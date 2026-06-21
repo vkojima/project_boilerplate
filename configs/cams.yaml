@@ -1,0 +1,10 @@
+# cams.yaml — Configuração de câmeras
+
+cameras: []
+# Exemplo:
+# cameras:
+#   - id: 0
+#     name: "cam-entrada"
+#     source: 0             # índice | "rtsp://..." | "/dev/video0"
+#     resolution: [1920, 1080]
+#     fps: 30
