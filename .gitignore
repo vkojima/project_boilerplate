@@ -21,6 +21,8 @@ env/
 # Outputs (debug, logs — não versionar)
 outputs/debugs/*.png
 outputs/debugs/*.jpg
+outputs/logs_history/*.log
+outputs/logs_history/*.log.*
 scripts/.logs/*.log
 scripts/.logs/*.err
 scripts/.pids/*.pid
