@@ -222,6 +222,40 @@ Exemplo: "O sistema deve alertar o operador quando a taxa de defeitos ultrapassa
 
 ---
 
+## Seção 13 — RACI
+
+> Objetivo: definir responsabilidades para que ninguém fique sem dono e ninguém acumule tudo.
+
+**Perguntas:**
+1. Quem são as **pessoas reais** por trás de cada papel? (mapear nomes para PAT, ARQ, DEV, QA, OPS, USR)
+2. Existe algum papel que **uma pessoa acumula**? Se sim, onde isso pode ser um gargalo?
+3. Existe algum entregável do projeto que **não tem um A claro**? Definir agora.
+4. Algum papel está com **muitos Cs** (consultado em tudo)? Avaliar se é realmente necessário ou é excesso de cautela.
+
+**Ação:** Preencher `docs/2_RACI.md` — substituir siglas por nomes reais e ajustar linhas conforme o projeto.
+
+**Validação:** Toda linha deve ter exatamente 1 A. Se alguém acumula A em mais de 60% das linhas, o projeto tem risco de concentração.
+
+---
+
+## Seção 14 — Plano de Comunicação
+
+> Objetivo: definir a cadência de follow-ups e os canais antes que o projeto comece — não depois que a comunicação já falhou.
+
+**Perguntas:**
+1. Qual é o **canal principal** de comunicação da equipe? (Teams, Slack, email, presencial)
+2. O patrocinador quer **atualização semanal ou quinzenal**? Qual formato prefere? (email, reunião, dashboard)
+3. Haverá **daily standup**? Se sim, qual horário e duração máxima?
+4. Quem **não deve ser incomodado** com detalhes técnicos? (recebe apenas o resumo executivo)
+5. Qual o **SLA de resposta** esperado nos canais assíncronos?
+6. Como será feita a **escalada** quando um bloqueio não for resolvido em 1 dia?
+
+**Ação:** Preencher `docs/4_COMMUNICATION.md` — confirmar cadência de reuniões e canais.
+
+**Validação:** O patrocinador deve explicitamente concordar com a frequência de updates — expectativas desalinhadas aqui geram ruído durante o projeto inteiro.
+
+---
+
 ## Artefatos a Gerar ao Final
 
 Após concluir todas as seções, produza:
@@ -232,14 +266,22 @@ Preencha completamente com base nas respostas das seções 1–5, 9, 10 e 12.
 ### 2. `docs/1_RISKS.md`
 Preencha com a tabela de riscos da seção 8, ordenada por severidade (Prob × Impacto).
 
-### 3. `PROJECT_STATUS.md`
-Atualize:
-- Fase atual: `01_inception` (onboarding concluído)
-- Data de início real do projeto
-- Personas ativas para a próxima fase
-- Preencha o cronograma macro na seção de histórico
+### 3. `docs/2_RACI.md`
+Substitua siglas por nomes reais. Ajuste entregáveis conforme o projeto.
 
-### 4. Commit
+### 4. `docs/3_SCHEDULE.md`
+Preencha estimativas e datas com base na seção 11. Calcule buffer e folga disponível.
+
+### 5. `docs/4_COMMUNICATION.md`
+Confirme canais, cadência e participantes com base na seção 14.
+
+### 6. `PROJECT_STATUS.md`
+Atualize:
+- Fase atual: `inception` (onboarding concluído)
+- Data de início real do projeto
+- Cronograma macro preenchido
+
+### 7. Commit
 ```
 docs: complete project onboarding and scope definition
 ```
@@ -257,11 +299,16 @@ Antes de fechar esta sessão, confirme:
 - [ ] Requisitos funcionais escritos no formato testável
 - [ ] RNFs com números (não "rápido", mas "< 200ms")
 - [ ] Restrições técnicas e de prazo documentadas
-- [ ] Tabela de riscos preenchida com estratégias
+- [ ] Tabela de riscos preenchida com estratégias e plano B
 - [ ] Fora de escopo explicitamente listado
 - [ ] Stack tecnológica confirmada
-- [ ] Cronograma macro com datas reais
+- [ ] Cronograma macro com datas reais e buffer calculado
 - [ ] DoD acordado com o patrocinador
+- [ ] RACI com nomes reais, sem linhas sem A
+- [ ] Plano de comunicação e cadência acordados
 - [ ] `docs/0_ESCOPO.md` gerado e revisado
-- [ ] `docs/1_RISKS.md` gerado
-- [ ] `PROJECT_STATUS.md` atualizado para fase `01_inception`
+- [ ] `docs/1_RISKS.md` gerado e ordenado por severidade
+- [ ] `docs/2_RACI.md` preenchido com nomes reais
+- [ ] `docs/3_SCHEDULE.md` com estimativas e buffer
+- [ ] `docs/4_COMMUNICATION.md` com cadência confirmada
+- [ ] `PROJECT_STATUS.md` atualizado para fase `inception`

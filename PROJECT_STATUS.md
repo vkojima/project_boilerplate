@@ -50,6 +50,32 @@
 
 ---
 
+## Próxima Revisão Agendada
+
+| Reunião | Data | Responsável |
+|---------|------|------------|
+| Weekly Status | DD-MM-YYYY | ARQ |
+| Phase Review | DD-MM-YYYY (ao concluir fase) | ARQ |
+| Stakeholder Update | DD-MM-YYYY | ARQ |
+
+---
+
+## Documentação do Projeto
+
+| Documento | Descrição | Última atualização |
+|-----------|-----------|-------------------|
+| [`docs/0_ESCOPO.md`](docs/0_ESCOPO.md) | Escopo, requisitos e critérios de aceite | — |
+| [`docs/1_RISKS.md`](docs/1_RISKS.md) | Registro de riscos | — |
+| [`docs/2_RACI.md`](docs/2_RACI.md) | Matriz de responsabilidades | — |
+| [`docs/3_SCHEDULE.md`](docs/3_SCHEDULE.md) | Cronograma e WBS | — |
+| [`docs/4_COMMUNICATION.md`](docs/4_COMMUNICATION.md) | Plano de comunicação e follow-ups | — |
+| [`docs/5_DECISIONS.md`](docs/5_DECISIONS.md) | Decision log | — |
+| [`docs/6_CHANGE_CONTROL.md`](docs/6_CHANGE_CONTROL.md) | Controle de mudanças | — |
+| [`docs/_CHANGELOG.md`](docs/_CHANGELOG.md) | Histórico de versões | — |
+| [`docs/_TODO.md`](docs/_TODO.md) | Backlog e tarefas | — |
+
+---
+
 ## Checklist da Fase Atual — `onboarding`
 
 > Checklist completo em `instructions/onboarding.md`
@@ -61,13 +87,18 @@
 - [ ] Seção 5 — Requisitos funcionais (formato testável)
 - [ ] Seção 6 — Requisitos não-funcionais (com números)
 - [ ] Seção 7 — Restrições
-- [ ] Seção 8 — Riscos (tabela com estratégias)
+- [ ] Seção 8 — Riscos (tabela com estratégias e plano B)
 - [ ] Seção 9 — Fora de escopo
 - [ ] Seção 10 — Stack e ambiente
 - [ ] Seção 11 — Cronograma e marcos
 - [ ] Seção 12 — Definição de pronto (DoD)
+- [ ] Seção 13 — RACI (nomes reais, sem linhas sem A)
+- [ ] Seção 14 — Plano de comunicação e cadência acordados
 - [ ] `docs/0_ESCOPO.md` gerado e revisado
-- [ ] `docs/1_RISKS.md` gerado
+- [ ] `docs/1_RISKS.md` gerado e ordenado por severidade
+- [ ] `docs/2_RACI.md` preenchido com nomes reais
+- [ ] `docs/3_SCHEDULE.md` com estimativas e buffer calculado
+- [ ] `docs/4_COMMUNICATION.md` com cadência confirmada
 - [ ] Cronograma macro preenchido acima
 
 ---
