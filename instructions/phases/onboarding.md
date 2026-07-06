@@ -258,12 +258,44 @@ Exemplo: "O sistema deve alertar o operador quando a taxa de defeitos ultrapassa
 
 ---
 
+## Seção 15 — Mapa de Valor por Papel
+
+> Objetivo: garantir que cada stakeholder identificado na Seção 3 ganhe algo concreto e mensurável — antes de escrever uma linha de código.
+
+Esta seção é conduzida pela persona `value-advocate`. Se ela não estiver ativa, o próprio modelo assume o papel de advogado do usuário final.
+
+**Para cada papel relevante no projeto, responda:**
+
+1. **O que este papel faz HOJE** para resolver o problema sem o sistema? (descreva o processo manual)
+2. **O que vai ser diferente DEPOIS** do sistema estar em uso? (mudança de comportamento, não de tecnologia)
+3. **Como vamos saber** que a mudança aconteceu? (métrica concreta)
+4. **O usuário real foi consultado** durante o levantamento de requisitos? Ou as respostas são suposições?
+
+**Value Canvas — preencher obrigatoriamente:**
+
+| Feature / Módulo | Stakeholder | Hoje (sem sistema) | Com o sistema | Ganho esperado | Métrica |
+|-----------------|-------------|-------------------|---------------|---------------|---------|
+| | Operador | | | | |
+| | Analista | | | | |
+| | Supervisor | | | | |
+| | Gestor | | | | |
+| | Gerente | | | | |
+
+**Provocações obrigatórias antes de fechar esta seção:**
+- Alguma feature no escopo não aparece em nenhuma linha do Value Canvas? Se sim, questionar se deve estar no escopo.
+- Existe linha do Canvas onde "Métrica" está vazia? Preencher ou retirar a feature.
+- O operador foi consultado diretamente, ou os requisitos vieram do gestor dele?
+
+**Ação:** Copiar o Value Canvas preenchido para `docs/0_ESCOPO.md` — seção "Valor por Papel".
+
+---
+
 ## Artefatos a Gerar ao Final
 
 Após concluir todas as seções, produza:
 
 ### 1. `docs/0_ESCOPO.md`
-Preencha completamente com base nas respostas das seções 1–5, 9, 10 e 12.
+Preencha completamente com base nas respostas das seções 1–5, 9, 10, 12 e 15 (incluindo Value Canvas).
 
 ### 2. `docs/1_RISKS.md`
 Preencha com a tabela de riscos da seção 8, ordenada por severidade (Prob × Impacto).
@@ -308,7 +340,8 @@ Antes de fechar esta sessão, confirme:
 - [ ] DoD acordado com o patrocinador
 - [ ] RACI com nomes reais, sem linhas sem A
 - [ ] Plano de comunicação e cadência acordados
-- [ ] `docs/0_ESCOPO.md` gerado e revisado
+- [ ] Value Canvas preenchido — toda feature mapeada para stakeholder + métrica
+- [ ] `docs/0_ESCOPO.md` gerado e revisado (inclui Value Canvas)
 - [ ] `docs/1_RISKS.md` gerado e ordenado por severidade
 - [ ] `docs/2_RACI.md` preenchido com nomes reais
 - [ ] `docs/3_SCHEDULE.md` com estimativas e buffer

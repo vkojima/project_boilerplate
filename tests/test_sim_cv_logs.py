@@ -3,14 +3,10 @@
 Testes unitários para sim_cv.logs.
 """
 import logging
-import sys
 import tempfile
 from pathlib import Path
 
 import pytest
-
-# Ajusta sys.path para encontrar sim_cv sem instalação
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 import sim_cv.logs as logs_module
 from sim_cv.logs import RingBufferHandler, get_recent_logs, setup_logger

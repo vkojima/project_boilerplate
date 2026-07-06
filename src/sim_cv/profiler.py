@@ -24,9 +24,15 @@ class Profiler:
         @functools.wraps(func)
         def wrapper(*args, **kwargs) -> Any:
             start = time.perf_counter()
-            result = func(*args, **kwargs)
-            elapsed = round(time.perf_counter() - start, 4)
-            LOGGER.debug("[PROFILER] %s → %.4fs", func.__qualname__, elapsed)
+            label = ""
+            try:
+                result = func(*args, **kwargs)
+            except Exception:
+                label = " (falhou)"
+                raise
+            finally:
+                elapsed = round(time.perf_counter() - start, 4)
+                LOGGER.debug("[PROFILER] %s → %.4fs%s", func.__qualname__, elapsed, label)
             if isinstance(result, dict) and "execution_time" not in result:
                 result["execution_time"] = elapsed
             return result

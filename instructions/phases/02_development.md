@@ -22,9 +22,20 @@
 - Testes junto com o código — não esperar fase de testing para cobrir o óbvio.
 - Commits: Conventional Commits em inglês.
 
+## Checklist de Valor por Feature (antes de marcar como pronta)
+
+> Conduza esta verificação para cada entregável antes de fechar. Features que não respondem às perguntas abaixo voltam para o backlog como hipóteses, não como escopo.
+
+- [ ] **Quem usa?** — Stakeholder identificado (operador / analista / supervisor / gestor / gerente)
+- [ ] **O que muda?** — Comportamento concreto diferente após o sistema estar ativo
+- [ ] **Como medir?** — Métrica definida no Value Canvas do onboarding
+- [ ] **Alerta é acionável?** — Se gera um alerta, o usuário sabe o que fazer sem pedir ajuda
+- [ ] **Usuário consultado?** — Design validado com quem usa, não apenas com quem pediu
+
 ## Checklist de Saída → Phase 03
 - [ ] Todos os módulos core implementados
 - [ ] Testes unitários cobrindo lógica principal
 - [ ] `main.py` orquestrando corretamente
 - [ ] `docs/_CHANGELOG.md` atualizado
 - [ ] Sem `TODO` crítico pendente
+- [ ] Value Canvas revisado — todos os módulos entregues estão mapeados

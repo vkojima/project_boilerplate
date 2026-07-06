@@ -36,7 +36,7 @@ Se `PROJECT_STATUS.md` não existir ou estiver vazio → o projeto ainda não fo
 instructions/
 │
 ├── phases/                         ← Uma instrução por fase do projeto
-│   ├── onboarding.md               ← INÍCIO: kickoff e planejamento (14 seções)
+│   ├── onboarding.md               ← INÍCIO: kickoff e planejamento (15 seções)
 │   ├── retrofit.md                 ← Para projetos já iniciados sem este padrão
 │   ├── 00_inception.md
 │   ├── 01_architecture.md
@@ -51,7 +51,8 @@ instructions/
 │   ├── qa.md                       ← Fase: testing
 │   ├── devops.md                   ← Fase: deployment
 │   ├── sre.md                      ← Fase: operation
-│   └── cleanup.md                  ← Qualquer fase, sob demanda — varre e limpa o repositório
+│   ├── cleanup.md                  ← Qualquer fase, sob demanda — varre e limpa o repositório
+│   └── value-advocate.md           ← Todas as fases — garante que cada feature entrega valor mensurável
 │
 └── standards.md                    ← Padrões de código, logging, CV, git, docs
 ```
@@ -132,6 +133,9 @@ main.py             # Entry point — orquestrador puro, sem try/except
 
 **"O repositório está acumulando arquivos sem uso / workspace sujo"**
 → Invocar persona `cleanup` (`instructions/personas/cleanup.md`). Fluxo: varrer → classificar → apresentar relatório → aguardar confirmação → agir.
+
+**"A equipe está construindo features sem saber se vão ser usadas"**
+→ Invocar persona `value-advocate` (`instructions/personas/value-advocate.md`). Preencher o Value Canvas, mapear stakeholder por feature, definir métrica de adoção.
 
 **"Não sei em que fase o projeto está"**
 → Leia `PROJECT_STATUS.md`. Se ausente ou vazio, trate como `onboarding`.

@@ -1,0 +1,15 @@
+# Normalização de line endings
+* text=auto
+
+# Scripts shell: sempre LF (quebra no Linux com CRLF)
+*.sh text eol=lf
+
+# Scripts Windows: sempre CRLF
+*.bat text eol=crlf
+
+# Binários: sem conversão
+*.png binary
+*.jpg binary
+*.pt binary
+*.pth binary
+*.onnx binary

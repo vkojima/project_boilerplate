@@ -11,17 +11,30 @@
 Todo projeto Python usa **ambiente virtual isolado** em `.venv/` na raiz do projeto.
 
 ```powershell
-# Criar (uma vez por projeto, após clonar)
-scripts\setup.bat           # Windows — cria .venv e instala requirements.txt
+# Windows
+scripts\setup.bat           # cria .venv e instala requirements.txt
+scripts\start.bat           # inicia backend com .venv
+scripts\stop.bat            # encerra processos via PID
 
-# Ativar manualmente para desenvolvimento
+# Ativar manualmente (Windows)
 .\.venv\Scripts\Activate.ps1        # PowerShell
 .\.venv\Scripts\activate.bat        # CMD
-source .venv/bin/activate           # Linux / macOS
+```
 
-# Instalar / atualizar dependências
+```bash
+# Ubuntu / Linux / macOS
+bash scripts/setup.sh       # cria .venv e instala requirements.txt
+bash scripts/start.sh       # inicia backend com nohup
+bash scripts/stop.sh        # encerra processos via SIGTERM → SIGKILL
+
+# Ativar manualmente (Linux)
+source .venv/bin/activate
+```
+
+```bash
+# Instalar / atualizar dependências (ambos os OS)
 pip install -r requirements.txt
-pip install nova-lib                # adicionar ao requirements.txt depois
+pip install nova-lib        # adicionar ao requirements.txt depois
 ```
 
 | Regra | Detalhe |
@@ -29,8 +42,8 @@ pip install nova-lib                # adicionar ao requirements.txt depois
 | **Sempre `.venv/`** | Na raiz do projeto. Nunca em subpastas ou fora do projeto. |
 | **Nunca commitar** | `.venv/` está no `.gitignore`. Nunca versionar o ambiente. |
 | **`requirements.txt` é a fonte de verdade** | Toda dependência nova vai para `requirements.txt` imediatamente. |
-| **`start.bat` usa o `.venv`** | Nunca apontar para o Python global em scripts de produção. |
-| **Verificar antes de rodar** | Se `.venv/` não existe, `start.bat` aborta e instrui a rodar `setup.bat`. |
+| **Scripts usam o `.venv`** | Nunca apontar para o Python global em scripts de produção. |
+| **Verificar antes de rodar** | Se `.venv/` não existe, os scripts abortam e instruem a rodar `setup`. |
 
 ---
 
@@ -41,14 +54,14 @@ pip install nova-lib                # adicionar ao requirements.txt depois
 | **Idioma** | Código e variáveis em **inglês**. Comentários, docstrings e logs em **PT-BR**. |
 | **Logging** | NUNCA use `print`. Use `LOGGER` via `sim_cv.logs`. |
 | **Prefixo de log** | Obrigatório: `[MÓDULO] Descrição...` — ex: `[DETECT] Iniciando detecção...` |
-| **Erros** | `try/except/finally` robusto dentro das funções. `main.py` sem tratativas. |
+| **Erros** | `try/except/finally` robusto dentro das funções. `main.py` sem tratativas de negócio. `KeyboardInterrupt` e `SystemExit` são aceitos no loop principal para shutdown gracioso. |
 | **Retorno de função** | Todo retorno de função de processamento deve incluir `execution_time` (float, segundos). |
 | **Comentários** | Só o WHY não-óbvio — constraint escondida, workaround, invariante sutil. Nunca o WHAT. |
 | **Abstrações** | Três linhas similares não justificam abstração prematura. Não design para futuro hipotético. |
 
 ---
 
-## 2. Biblioteca `sim_cv`
+## 3. Biblioteca `sim_cv`
 
 Localização: `src/sim_cv/`. O `sys.path` é configurado em `main.py` — imports ficam limpos:
 
@@ -74,7 +87,7 @@ Nunca instanciar logger manualmente fora desse padrão.
 
 ---
 
-## 3. Template de Módulo
+## 4. Template de Módulo
 
 ```python
 """process_example.py
@@ -120,7 +133,7 @@ def detect_pattern(image, config: dict) -> Dict[str, Any]:
 
 ---
 
-## 4. Protocolo de Visão Computacional (Debug Visual)
+## 5. Protocolo de Visão Computacional (Debug Visual)
 
 Salvar imagens intermediárias em `outputs/debugs/` a cada etapa do pipeline:
 
@@ -146,7 +159,7 @@ cv.imwrite("outputs/debugs/01_Threshold.png", error_img)
 
 ---
 
-## 5. Configurações — Hot Reload
+## 6. Configurações — Hot Reload
 
 Todo sistema deve suportar alteração de YAML sem restart:
 
@@ -169,19 +182,22 @@ def load_config(path: str) -> dict:
 
 ---
 
-## 6. Padrão dos Scripts (start.bat / stop.bat)
+## 7. Padrão dos Scripts
 
 | Regra | Detalhe |
 |-------|---------|
-| **Raiz do projeto** | `%~dp0..` (absoluto, independente de onde o script é chamado) |
-| **PIDs** | Isolados em `scripts\.pids\backend.pid` e `frontend.pid` |
-| **Iniciar** | `Start-Process -PassThru` (PowerShell) para capturar PID correto |
-| **Encerrar** | `taskkill /PID <PID> /T /F` + apagar arquivo de PID |
-| **Frontend** | `cmd /k npm run dev` em `-WorkingDirectory %ROOT%\src\web` |
+| **Raiz do projeto** | Windows: `%~dp0..` · Linux: `$(cd "$(dirname "$0")/.." && pwd)` |
+| **PIDs** | Isolados em `scripts/.pids/backend.pid` (ambos os OS) |
+| **Logs** | `scripts/.logs/backend.log` e `.err` (ambos os OS) |
+| **Iniciar (Windows)** | `Start-Process -PassThru` via PowerShell para capturar PID |
+| **Iniciar (Linux)** | `nohup ... & echo $! > backend.pid` |
+| **Encerrar (Windows)** | `taskkill /PID <PID> /T /F` + deletar arquivo de PID |
+| **Encerrar (Linux)** | `kill -TERM <PID>` → aguarda 5s → `kill -KILL` se necessário |
+| **Paridade** | Toda funcionalidade em `.bat` deve existir no `.sh` equivalente |
 
 ---
 
-## 7. Git
+## 8. Git
 
 | Regra | Detalhe |
 |-------|---------|
@@ -192,7 +208,7 @@ def load_config(path: str) -> dict:
 
 ---
 
-## 8. Documentação Obrigatória
+## 9. Documentação Obrigatória
 
 ### `docs/_CHANGELOG.md`
 Atualizar a cada mudança relevante. Versão mais recente no topo:
@@ -213,9 +229,64 @@ Manter sempre atualizado com prioridades:
 
 ---
 
-## 9. Saúde e Observabilidade
+## 10. Saúde e Observabilidade
 
 - Status consistente por ciclo — resetado no início de cada iteração.
 - `execution_time` em segundos (float) em todos os retornos de função de processamento.
 - Logs separados: inicialização vs. operação; backend vs. frontend.
 - Sem "infoxication": INFO para fluxo normal, DEBUG para diagnóstico, ERROR para falhas reais.
+
+### Padrão de Health Check
+
+Expor um status do sistema consultável em runtime — sem I/O no caminho crítico:
+
+```python
+from dataclasses import dataclass, field
+from datetime import datetime
+
+@dataclass
+class SystemHealth:
+    is_alive: bool = False
+    last_frame_ts: float = 0.0      # time.perf_counter()
+    last_error: str = ""
+    fps: float = 0.0
+    cycle_count: int = 0
+
+_health = SystemHealth()
+
+def get_health() -> dict:
+    """Retorna snapshot do estado atual — adequado para API /health ou watchdog."""
+    return {
+        "is_alive": _health.is_alive,
+        "last_frame_ts": _health.last_frame_ts,
+        "last_error": _health.last_error,
+        "fps": _health.fps,
+        "cycle_count": _health.cycle_count,
+    }
+```
+
+**Regra:** Resetar `last_error` e atualizar `last_frame_ts` a cada ciclo bem-sucedido. Um watchdog externo pode verificar `time.perf_counter() - last_frame_ts` para detectar travamento.
+
+### Padrão de Persistência de Resultados
+
+Para rastreabilidade e histórico (lote, turno, auditoria):
+
+```python
+import csv
+from datetime import datetime
+from pathlib import Path
+
+def save_result(result: dict, output_dir: str = "outputs/results") -> None:
+    """Persiste resultado com timestamp em CSV incremental."""
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    out_file = Path(output_dir) / "results.csv"
+    row = {**result, "timestamp": datetime.now().isoformat()}
+    write_header = not out_file.exists()
+    with open(out_file, "a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=list(row.keys()))
+        if write_header:
+            writer.writeheader()
+        writer.writerow(row)
+```
+
+**Convenção:** `outputs/results/results.csv` — não versionado (adicionar ao `.gitignore` se necessário). Para volumes altos, migrar para SQLite com a mesma interface.

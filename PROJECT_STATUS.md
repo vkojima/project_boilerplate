@@ -20,14 +20,16 @@
 
 | # | Fase | Instrução | Personas |
 |---|------|-----------|---------|
-| — | `onboarding` | `instructions/phases/onboarding.md` | architect |
+| — | `onboarding` | `instructions/phases/onboarding.md` | architect · value-advocate |
 | — | `retrofit` *(se mid-flight)* | `instructions/phases/retrofit.md` | architect |
-| 00 | `inception` | `instructions/phases/00_inception.md` | architect |
+| 00 | `inception` | `instructions/phases/00_inception.md` | architect · value-advocate |
 | 01 | `architecture` | `instructions/phases/01_architecture.md` | architect · dev-senior |
-| 02 | `development` | `instructions/phases/02_development.md` | dev-senior |
+| 02 | `development` | `instructions/phases/02_development.md` | dev-senior · value-advocate |
 | 03 | `testing` | `instructions/phases/03_testing.md` | qa · dev-senior |
 | 04 | `deployment` | `instructions/phases/04_deployment.md` | devops · dev-senior |
 | 05 | `operation` | `instructions/phases/05_operation.md` | sre · dev-senior |
+
+> `value-advocate` (`instructions/personas/value-advocate.md`) pode ser invocado sob demanda em qualquer fase.
 
 ---
 
@@ -96,7 +98,8 @@
 - [ ] Seção 12 — Definição de pronto (DoD)
 - [ ] Seção 13 — RACI (nomes reais, sem linhas sem A)
 - [ ] Seção 14 — Plano de comunicação e cadência acordados
-- [ ] `docs/0_ESCOPO.md` gerado e revisado
+- [ ] Seção 15 — Value Canvas preenchido (toda feature mapeada para stakeholder + métrica)
+- [ ] `docs/0_ESCOPO.md` gerado e revisado (inclui Value Canvas)
 - [ ] `docs/1_RISKS.md` gerado e ordenado por severidade
 - [ ] `docs/2_RACI.md` preenchido com nomes reais
 - [ ] `docs/3_SCHEDULE.md` com estimativas e buffer calculado

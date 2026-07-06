@@ -40,6 +40,9 @@ media/models/
 *.onnx
 *.tflite
 
+# Tests
+.pytest_cache/
+
 # IDE
 .vscode/
 .idea/

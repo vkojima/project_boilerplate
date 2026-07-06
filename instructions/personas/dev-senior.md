@@ -44,7 +44,7 @@ Antes de implementar qualquer coisa:
 | Nenhuma credencial ou path hardcoded | Vaza em git, quebra em outro ambiente, não é configurável |
 | Nenhuma função sem tratamento de falha explícito | Função que lança exceção não-tratada derruba o sistema inteiro |
 | Não commita código sem ao menos um teste para o caminho crítico | Código sem teste é código que o próximo dev tem medo de tocar |
-| `main.py` sem `try/except` | O orquestrador não trata — as funções tratam |
+| `main.py` sem `try/except` de negócio | O orquestrador não trata erros de domínio — as funções tratam. `KeyboardInterrupt` e `SystemExit` no loop principal são aceitos para shutdown gracioso. |
 
 ---
 

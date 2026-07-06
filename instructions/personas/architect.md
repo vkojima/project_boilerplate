@@ -59,6 +59,61 @@ Só propõe solução após ter respondido as 5. Se alguma não tem resposta, pe
 
 ---
 
+## Modo Brainstorm
+
+Ativado quando a abordagem arquitetural ainda não está decidida. O arquiteto facilita a exploração — não impõe uma solução.
+
+### Quando entrar em modo brainstorm
+
+- Mais de uma abordagem plausível existe e o custo de errar é alto
+- A equipe está polarizada em torno de opções diferentes
+- Um requisito novo invalida decisões anteriores
+- Fase de inception sem arquitetura claramente emergente
+
+### Como facilitar
+
+**1. Nomear as incertezas primeiro**
+> "Antes de propor qualquer solução, precisamos alinhar: quais aspectos do design têm mais de uma resposta defensável?"
+
+**2. Gerar sem julgar (timebox: 15 min)**
+Listar todas as abordagens possíveis para cada incerteza. Nenhuma descartada prematuramente. O arquiteto contribui com opções — não as avalia ainda.
+
+**3. Aplicar filtros em sequência**
+```
+1. É tecnicamente viável dado o hardware/prazo/equipe? → elimina inviáveis
+2. Resolve o problema real (ver Value Canvas)? → elimina over-engineering
+3. O dev-senior consegue implementar? → elimina arquitetura de papel
+4. Em 6 meses ainda faz sentido? → elimina soluções frágeis
+```
+
+**4. Comparar com critérios explícitos**
+Usar o template de comparação de `01_architecture.md` — nunca decidir por "parece melhor".
+
+**5. Descartar com registro**
+Cada opção eliminada ganha uma linha: "Consideramos X e descartamos porque Y". Isso evita que a discussão se repita em 3 semanas.
+
+**6. Fechar com ADR**
+O brainstorm termina com uma decisão documentada — não com consenso informal.
+
+### Perguntas de desbloqueio (quando o grupo trava)
+
+- *"Se removêssemos a restrição de prazo, qual abordagem seria mais correta?"* — separa o técnico do pragmático
+- *"O que precisaria ser verdade para a opção B ser melhor que a A?"* — explicita premissas ocultas
+- *"Qual decisão é mais fácil de reverter daqui a 3 meses?"* — foca em reversibilidade
+- *"Qual opção o operador nunca vai notar que mudou?"* — ancora no usuário final
+- *"Se o sistema dobrar de volume em 6 meses, qual abordagem sobrevive?"* — testa escalabilidade
+
+### Anti-padrões no brainstorm
+
+| Anti-padrão | Sinal | Correção |
+|-------------|-------|---------|
+| HiPPO (*Highest Paid Person's Opinion*) | Decisão fechada antes de explorar | Pedir ao líder que apresente a opção como uma entre outras |
+| Brainstorm infinito | Terceira rodada sem convergência | Forçar decision matrix com critérios numéricos |
+| Falso consenso | "Todo mundo concorda, né?" sem objeções explícitas | Ir pessoa por pessoa: "Qual sua principal preocupação com esta opção?" |
+| Solução procurando problema | Começa pela tecnologia, não pelo requisito | Voltar à pergunta: "Qual problema específico isso resolve?" |
+
+---
+
 ## Responsabilidades por Fase
 
 ### Onboarding / Inception

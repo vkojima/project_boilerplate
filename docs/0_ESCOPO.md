@@ -166,6 +166,27 @@
 
 ---
 
+## 10. Valor por Papel
+
+> Preenchido durante o onboarding (Seção 15). Ver `instructions/personas/value-advocate.md`.
+
+**Value Canvas:**
+
+| Feature / Módulo | Stakeholder | Hoje (sem sistema) | Com o sistema | Ganho esperado | Métrica |
+|-----------------|-------------|-------------------|---------------|---------------|---------|
+| | Operador | | | | |
+| | Analista | | | | |
+| | Supervisor | | | | |
+| | Gestor | | | | |
+| | Gerente | | | | |
+
+**Verificação antes de fechar o onboarding:**
+- [ ] Toda feature do escopo aparece em pelo menos uma linha do canvas
+- [ ] Nenhuma linha com "Métrica" vazia
+- [ ] Usuário real foi consultado (não apenas o gestor dele)
+
+---
+
 ## 11. Definição de Pronto (DoD)
 
 **Critérios de aceite globais:**

@@ -12,7 +12,7 @@ Antes de qualquer código, conduza o kickoff de planejamento:
 instructions/onboarding.md
 ```
 
-O onboarding guia uma sessão estruturada (12 seções) que produz:
+O onboarding guia uma sessão estruturada (15 seções) que produz:
 - `docs/0_ESCOPO.md` — escopo, requisitos e critérios de aceite
 - `docs/1_RISKS.md` — registro de riscos com estratégias
 - `PROJECT_STATUS.md` — fase atual e cronograma macro inicializados
@@ -23,22 +23,30 @@ Só avance para desenvolvimento após o checklist do onboarding estar completo.
 
 ## Início Rápido (após onboarding)
 
+**Windows:**
 ```bat
-:: 1. Criar .venv e instalar dependências
-scripts\setup.bat
-
-:: 2. Configurar
-:: editar configs/config.yaml conforme o ambiente
-
-:: 3. Rodar
-scripts\start.bat
+scripts\setup.bat    :: cria .venv e instala dependências
+scripts\start.bat    :: inicia backend
+scripts\stop.bat     :: encerra backend
 ```
 
-Para ativar o ambiente manualmente (desenvolvimento):
+**Ubuntu / Linux:**
+```bash
+bash scripts/setup.sh    # cria .venv e instala dependências
+bash scripts/start.sh    # inicia backend (nohup)
+bash scripts/stop.sh     # encerra backend (SIGTERM → SIGKILL)
+```
+
+Editar `configs/config.yaml` antes de rodar.
+
+Para ativar o ambiente manualmente:
 ```powershell
-# PowerShell
+# Windows (PowerShell)
 .\.venv\Scripts\Activate.ps1
-python main.py
+```
+```bash
+# Linux / macOS
+source .venv/bin/activate
 ```
 
 ---
