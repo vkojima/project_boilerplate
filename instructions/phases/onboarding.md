@@ -16,9 +16,19 @@ Respostas vagas devem ser questionadas — clareza agora evita retrabalho depois
 
 1. Apresente-se e explique o objetivo da sessão ao usuário.
 2. Faça as perguntas de cada seção em ordem.
-3. Para cada resposta: valide, questione ambiguidades, registre.
-4. Se o usuário não souber responder algo, marque como `[A DEFINIR]` e siga — mas sinalize que aquele ponto é um risco.
-5. Ao final, produza os artefatos.
+3. **Para cada pergunta: apresente primeiro um pool de sugestões** — opções pré-definidas que o usuário pode selecionar, ajustar ou ignorar. Respostas redigidas livremente são permitidas, mas sugestões devem vir antes.
+4. Para cada resposta: valide, questione ambiguidades, registre.
+5. Se o usuário não souber responder algo, marque como `[A DEFINIR]` e siga — mas sinalize que aquele ponto é um risco.
+6. Ao final, produza os artefatos.
+
+> **Formato de pool de sugestões:**
+> ```
+> - [ ] Opção A
+> - [ ] Opção B
+> - [ ] Opção C
+> - Outro: ___
+> ```
+> Apresente sempre o pool antes do campo aberto. O usuário pode marcar uma ou mais opções, editar o texto da opção, ou escrever livremente em "Outro".
 
 ---
 
@@ -29,8 +39,25 @@ Respostas vagas devem ser questionadas — clareza agora evita retrabalho depois
 **Perguntas:**
 1. Qual é o **nome** do projeto? (curto, sem espaços idealmente)
 2. Em uma frase: **o que este sistema faz**?
-3. Dentro de qual **contexto maior** ele se insere? (linha de produção, plataforma interna, produto SaaS, etc.)
-4. Existe algum **sistema predecessor** ou equivalente? Se sim, por que está sendo substituído/complementado?
+3. Dentro de qual **contexto maior** ele se insere?
+
+   **Sugestões** *(selecione ou descreva livremente)*:
+   - [ ] Linha de produção industrial (manufatura, montagem, usinagem)
+   - [ ] Sistema de inspeção / controle de qualidade
+   - [ ] Monitoramento de processo / IIoT
+   - [ ] Plataforma interna de dados / analytics
+   - [ ] Produto ou serviço entregue a cliente externo
+   - Outro: ___
+
+4. Existe algum **sistema predecessor** ou equivalente?
+
+   **Sugestões**:
+   - [ ] Nenhum — projeto greenfield
+   - [ ] Processo 100% manual (planilha, papel, inspeção visual)
+   - [ ] Sistema legado sem suporte ou documentação
+   - [ ] Solução de terceiro sendo substituída por desenvolvimento interno
+   - [ ] Protótipo/POC que vai para produção
+   - Outro: ___
 
 **Validação:** A resposta para a pergunta 2 deve ser compreensível por alguém de fora da equipe. Se não for, peça para reformular.
 
@@ -41,10 +68,47 @@ Respostas vagas devem ser questionadas — clareza agora evita retrabalho depois
 > Objetivo: entender o problema real, não a solução imaginada.
 
 **Perguntas:**
-1. Qual é o **problema** que este projeto resolve? (descreva o problema, não a solução)
+1. Qual é o **problema** que este projeto resolve?
+
+   **Sugestões** *(selecione ou descreva livremente)*:
+   - [ ] Inspeção visual manual com alta taxa de erro ou variabilidade entre operadores
+   - [ ] Falta de rastreabilidade de defeitos por peça, lote ou turno
+   - [ ] Processo sem dados históricos para análise ou tomada de decisão
+   - [ ] Retrabalho ou scrap elevado por detecção tardia de falhas
+   - [ ] Gargalo humano em tarefa repetitiva e passível de automação
+   - [ ] Falta de visibilidade em tempo real do estado da linha/equipamento
+   - Outro: ___
+
 2. **Por que agora?** O que mudou ou está mudando que torna este projeto urgente/relevante?
-3. **O que acontece se não fizermos nada?** Qual é o custo de não resolver? (financeiro, operacional, estratégico)
+
+   **Sugestões**:
+   - [ ] Novo requisito de qualidade ou conformidade (cliente, norma, auditoria)
+   - [ ] Aumento de volume sem capacidade de aumentar equipe proporcionalmente
+   - [ ] Falhas recorrentes com impacto financeiro mensurável
+   - [ ] Iniciativa de digitalização / Indústria 4.0 em andamento
+   - [ ] Demanda direta de cliente ou risco de perda de contrato
+   - [ ] Equipamento novo adquirido que precisa ser integrado
+   - Outro: ___
+
+3. **O que acontece se não fizermos nada?** Qual é o custo de não resolver?
+
+   **Sugestões**:
+   - [ ] Custo de retrabalho/scrap continua crescendo
+   - [ ] Risco de não-conformidade com cliente ou regulatório
+   - [ ] Operador continua exposto a tarefa de alto esforço cognitivo
+   - [ ] Decisões sendo tomadas sem dados — baseadas em intuição
+   - [ ] Perda de competitividade frente a concorrentes que já automatizaram
+   - Outro: ___
+
 4. Como este problema é resolvido **hoje**? Por que essa solução atual não é suficiente?
+
+   **Sugestões** *(solução atual)*:
+   - [ ] Inspeção 100% manual por operador
+   - [ ] Amostragem aleatória com inspetor de qualidade
+   - [ ] Planilha preenchida manualmente ao final do turno
+   - [ ] Nenhum controle formal — problema não é acompanhado
+   - [ ] Sistema legado que não integra com os demais
+   - Outro: ___
 
 **Validação:** Se a resposta para "por que agora" for vaga (ex: "é uma demanda antiga"), questione — projetos sem urgência real costumam ser despriorizados ou abandonados.
 
@@ -56,8 +120,27 @@ Respostas vagas devem ser questionadas — clareza agora evita retrabalho depois
 
 **Perguntas:**
 1. Quem **patrocina** o projeto? (quem aprova recursos e escopo)
-2. Quem são os **usuários diretos** do sistema? (papel, quantidade estimada, nível técnico)
-3. Quem é **impactado** pelo sistema sem ser usuário direto? (equipes, sistemas integrados, clientes finais)
+2. Quem são os **usuários diretos** do sistema?
+
+   **Sugestões** *(selecione todos que se aplicam)*:
+   - [ ] Operador de linha / máquina
+   - [ ] Técnico de qualidade / inspetor
+   - [ ] Supervisor / encarregado de turno
+   - [ ] Engenheiro de processo / manufatura
+   - [ ] Gestor de produção
+   - [ ] Equipe de TI / manutenção do sistema
+   - Outro: ___
+
+3. Quem é **impactado** pelo sistema sem ser usuário direto?
+
+   **Sugestões**:
+   - [ ] Gerente / diretoria (recebe indicadores)
+   - [ ] Cliente final (afetado pela qualidade do produto)
+   - [ ] Equipe de logística / expedição
+   - [ ] Sistemas integrados (ERP, MES, SCADA)
+   - [ ] Fornecedor de matéria-prima (rastreabilidade upstream)
+   - Outro: ___
+
 4. Quem tem **poder de veto** ou aprovação final? (técnico e de negócio)
 5. Existe algum **stakeholder crítico ausente** desta conversa? O que fazer para incluí-lo?
 
@@ -97,7 +180,19 @@ Respostas vagas devem ser questionadas — clareza agora evita retrabalho depois
 **Perguntas:**
 1. Descreva os **3 a 5 fluxos principais** do sistema (happy path). Para cada um: quem inicia, o que acontece, qual o resultado esperado.
 2. Quais são os **fluxos de exceção críticos** que o sistema deve tratar? (falhas de sensor, dados inválidos, timeout, etc.)
-3. Quais são as **integrações obrigatórias** com outros sistemas? (APIs, bancos de dados, equipamentos, protocolos industriais)
+3. Quais são as **integrações obrigatórias** com outros sistemas?
+
+   **Sugestões** *(selecione todas que se aplicam)*:
+   - [ ] CLP via Modbus TCP/RTU
+   - [ ] CLP/SCADA via OPC-UA
+   - [ ] Câmera industrial (Basler pypylon, ZED SDK, webcam USB)
+   - [ ] ERP / MES via API REST ou arquivo CSV/XML
+   - [ ] Banco de dados local (SQLite, PostgreSQL)
+   - [ ] Dashboard / interface web interna
+   - [ ] Envio de alertas (e-mail, Teams, WhatsApp)
+   - [ ] Nenhuma integração externa — sistema standalone
+   - Outro: ___
+
 4. Existem **regras de negócio** específicas que o sistema deve aplicar? (limites, thresholds, lógica condicional)
 
 **Formato de requisito funcional:**
@@ -134,11 +229,31 @@ Exemplo: "O sistema deve alertar o operador quando a taxa de defeitos ultrapassa
 > Objetivo: mapear o que não pode ser ignorado — restrições são fatos, não preferências.
 
 **Perguntas:**
-1. Quais são as **restrições técnicas** inegociáveis? (hardware legado, protocolo obrigatório, linguagem definida, sem acesso à internet, etc.)
+1. Quais são as **restrições técnicas** inegociáveis?
+
+   **Sugestões** *(selecione todas que se aplicam)*:
+   - [ ] Hardware específico já adquirido (câmera, CLP, servidor)
+   - [ ] Sistema operacional fixo (Windows / Ubuntu / embarcado)
+   - [ ] Sem acesso à internet no ambiente de produção (air-gap)
+   - [ ] Linguagem ou framework definido pela empresa
+   - [ ] Protocolo de comunicação obrigatório (Modbus, OPC-UA, etc.)
+   - [ ] Integração obrigatória com sistema legado sem API moderna
+   - [ ] Sem permissão para instalar software de terceiros sem aprovação de TI
+   - Outro: ___
+
 2. Qual é o **prazo** do projeto? Existe um deadline hard (não pode ser movido)?
 3. Qual é o **tamanho da equipe** e disponibilidade? (horas/semana por pessoa)
 4. Existem **restrições de orçamento** que impactam escolhas técnicas? (licenças, hardware, cloud)
-5. Existem **restrições regulatórias ou de segurança** (ISO, IEC, LGPD, NR-12, etc.)?
+5. Existem **restrições regulatórias ou de segurança**?
+
+   **Sugestões**:
+   - [ ] ISO 9001 / IATF 16949 (rastreabilidade obrigatória)
+   - [ ] NR-12 (segurança em máquinas — impacta design de alertas e paradas)
+   - [ ] LGPD (dados pessoais de operadores)
+   - [ ] Requisitos de cibersegurança da rede industrial (IEC 62443)
+   - [ ] Nenhuma restrição regulatória identificada
+   - Outro: ___
+
 6. Existem **dependências externas** que podem atrasar o projeto? (entrega de hardware, acesso a ambiente, aprovação de terceiros)
 
 ---
@@ -153,10 +268,36 @@ Exemplo: "O sistema deve alertar o operador quando a taxa de defeitos ultrapassa
 - **Estratégia:** Mitigar / Aceitar / Eliminar / Transferir
 
 **Perguntas:**
-1. Quais são os **maiores riscos técnicos**? (tecnologia nova, integração complexa, performance incerta)
-2. Quais são os **riscos de negócio**? (mudança de prioridade, stakeholder chave indisponível, escopo crescente)
+1. Quais são os **maiores riscos técnicos**?
+
+   **Sugestões** *(selecione e ajuste probabilidade/impacto)*:
+   - [ ] Performance do modelo abaixo do RNF em hardware alvo
+   - [ ] Integração com equipamento industrial mais complexa que o esperado
+   - [ ] Variação de iluminação/ambiente invalida o modelo treinado
+   - [ ] Dados de treinamento insuficientes ou não representativos
+   - [ ] Latência de rede/comunicação inviabiliza operação em tempo real
+   - Outro: ___
+
+2. Quais são os **riscos de negócio**?
+
+   **Sugestões**:
+   - [ ] Mudança de prioridade ou cancelamento por decisão gerencial
+   - [ ] Stakeholder-chave indisponível nos momentos críticos
+   - [ ] Escopo crescendo sem CR formal (scope creep)
+   - [ ] Resistência à adoção por parte dos operadores
+   - [ ] Dependência de fornecedor externo com prazo incerto
+   - Outro: ___
+
 3. Quais são os **riscos de prazo**? (dependências externas, equipe parcial, aprendizado de tecnologia)
-4. Quais são os **riscos de qualidade**? (dados insuficientes para treinar modelo, ambiente de teste diferente do real)
+4. Quais são os **riscos de qualidade**?
+
+   **Sugestões**:
+   - [ ] Ambiente de teste diferente do ambiente de produção real
+   - [ ] Dados de treinamento coletados em condições ideais, não reais
+   - [ ] Sem acesso ao equipamento real durante o desenvolvimento
+   - [ ] Critérios de aceite vagos — difícil saber quando "está pronto"
+   - Outro: ___
+
 5. Qual risco, se materializar, **inviabiliza o projeto**? Existe plano B?
 
 **Tabela de riscos:**
@@ -183,11 +324,56 @@ Exemplo: "O sistema deve alertar o operador quando a taxa de defeitos ultrapassa
 > Objetivo: confirmar ou definir as escolhas tecnológicas com justificativa.
 
 **Perguntas:**
-1. Existe alguma **linguagem ou framework obrigatório**? Por quê?
-2. Qual é o **ambiente de execução**? (Windows/Linux, on-premise/cloud/edge, hardware específico)
-3. Existem **bibliotecas ou SDKs obrigatórios**? (ex: pypylon para câmeras Basler, pymodbus para CLP)
+1. Existe alguma **linguagem ou framework obrigatório**?
+
+   **Sugestões**:
+   - [ ] Python 3.11+ (padrão do boilerplate)
+   - [ ] Python + extensões C/C++ para performance crítica
+   - [ ] Definido pela TI / política da empresa: ___
+   - Outro: ___
+
+2. Qual é o **ambiente de execução**?
+
+   **Sugestões**:
+   - [ ] Windows on-premise (estação ou servidor local)
+   - [ ] Ubuntu on-premise (servidor de produção ou PC industrial)
+   - [ ] Edge — NVIDIA Jetson (Orin / AGX / Nano)
+   - [ ] Edge — Raspberry Pi ou similar
+   - [ ] Híbrido: desenvolvimento Windows, deploy Ubuntu
+   - [ ] Cloud (AWS / Azure / GCP)
+   - Outro: ___
+
+3. Existem **bibliotecas ou SDKs obrigatórios**?
+
+   **Sugestões** *(selecione todas que se aplicam)*:
+   - [ ] pypylon — câmeras Basler
+   - [ ] pyzed / ZED SDK — câmera ZED estéreo
+   - [ ] pymodbus — comunicação Modbus TCP/RTU
+   - [ ] opcua / asyncua — comunicação OPC-UA
+   - [ ] OpenCV — processamento de imagem
+   - [ ] Ultralytics (YOLO) — detecção de objetos
+   - [ ] PyTorch / ONNX Runtime — inferência de modelos
+   - [ ] FastAPI — API REST
+   - Outro: ___
+
 4. Como será feito o **deploy e atualização** do sistema em produção?
+
+   **Sugestões**:
+   - [ ] Atualização manual via git pull + restart
+   - [ ] Script de deploy automatizado (CI/CD)
+   - [ ] Instalador empacotado (PyInstaller, NSIS)
+   - [ ] Container Docker
+   - [ ] Acesso remoto via VPN para atualização
+   - Outro: ___
+
 5. Existe **ambiente de staging** ou o desenvolvimento vai direto para produção?
+
+   **Sugestões**:
+   - [ ] Sem staging — desenvolvimento vai direto para produção
+   - [ ] Staging em hardware idêntico ao de produção
+   - [ ] Staging em hardware similar (mesma câmera, CLP simulado)
+   - [ ] Staging em ambiente de simulação / dados gravados
+   - Outro: ___
 
 ---
 
@@ -245,12 +431,35 @@ Exemplo: "O sistema deve alertar o operador quando a taxa de defeitos ultrapassa
 > Objetivo: definir a cadência de follow-ups e os canais antes que o projeto comece — não depois que a comunicação já falhou.
 
 **Perguntas:**
-1. Qual é o **canal principal** de comunicação da equipe? (Teams, Slack, email, presencial)
-2. O patrocinador quer **atualização semanal ou quinzenal**? Qual formato prefere? (email, reunião, dashboard)
+1. Qual é o **canal principal** de comunicação da equipe?
+
+   **Sugestões**:
+   - [ ] Microsoft Teams
+   - [ ] Slack
+   - [ ] E-mail
+   - [ ] WhatsApp / grupo informal
+   - [ ] Presencial / reuniões semanais
+   - Outro: ___
+
+2. O patrocinador quer **atualização** com qual formato e frequência?
+
+   **Sugestões**:
+   - [ ] E-mail semanal com status resumido (semáforo + blockers)
+   - [ ] Reunião quinzenal de 30 min
+   - [ ] Dashboard sempre disponível (sem reunião periódica)
+   - [ ] Somente quando houver risco ou desvio de prazo
+   - Outro: ___
+
 3. Haverá **daily standup**? Se sim, qual horário e duração máxima?
 4. Quem **não deve ser incomodado** com detalhes técnicos? (recebe apenas o resumo executivo)
 5. Qual o **SLA de resposta** esperado nos canais assíncronos?
 6. Como será feita a **escalada** quando um bloqueio não for resolvido em 1 dia?
+
+   **Sugestões**:
+   - [ ] Mensagem direta ao patrocinador no canal principal
+   - [ ] Reunião de emergência convocada pelo ARQ
+   - [ ] Registro formal em `docs/6_CHANGE_CONTROL.md` e aguardar decisão
+   - Outro: ___
 
 **Ação:** Preencher `docs/4_COMMUNICATION.md` — confirmar cadência de reuniões e canais.
 
@@ -266,10 +475,47 @@ Esta seção é conduzida pela persona `value-advocate`. Se ela não estiver ati
 
 **Para cada papel relevante no projeto, responda:**
 
-1. **O que este papel faz HOJE** para resolver o problema sem o sistema? (descreva o processo manual)
-2. **O que vai ser diferente DEPOIS** do sistema estar em uso? (mudança de comportamento, não de tecnologia)
+1. **O que este papel faz HOJE** para resolver o problema sem o sistema?
+
+   **Sugestões por papel**:
+
+   *Operador:*
+   - [ ] Inspeciona visualmente cada peça manualmente
+   - [ ] Para a linha e chama supervisor quando detecta anomalia
+   - [ ] Preenche formulário de ocorrência em papel
+   - [ ] Aguarda instrução — não tem autonomia para agir sem aprovação
+   - Outro: ___
+
+   *Analista / Inspetor de qualidade:*
+   - [ ] Faz amostragem aleatória ao final do turno
+   - [ ] Consolida dados de defeito manualmente em planilha
+   - [ ] Gera relatório de qualidade com 1–2 dias de atraso
+   - Outro: ___
+
+   *Supervisor / Gestor:*
+   - [ ] Recebe informação de defeito somente ao final do turno
+   - [ ] Não tem visibilidade em tempo real do estado da linha
+   - [ ] Toma decisões baseadas em relato verbal do operador
+   - Outro: ___
+
+2. **O que vai ser diferente DEPOIS** do sistema estar em uso?
+
+   **Sugestões**:
+   - [ ] Alerta automático no momento da ocorrência — sem esperar fim de turno
+   - [ ] Operador age sem precisar chamar supervisor para confirmação
+   - [ ] Rastreabilidade disponível por peça, lote e turno sem digitação manual
+   - [ ] Decisão do gestor baseada em dado, não em percepção
+   - [ ] Relatório gerado automaticamente — sem consolidação manual
+   - Outro: ___
+
 3. **Como vamos saber** que a mudança aconteceu? (métrica concreta)
-4. **O usuário real foi consultado** durante o levantamento de requisitos? Ou as respostas são suposições?
+4. **O usuário real foi consultado** durante o levantamento de requisitos?
+
+   **Sugestões**:
+   - [ ] Sim — entrevista direta com operador/analista realizada
+   - [ ] Parcialmente — só o supervisor foi consultado, não quem opera
+   - [ ] Não — requisitos vieram de engenharia/gestão sem consulta ao usuário final
+   - [ ] Previsto: visita ao chão de fábrica agendada para ___
 
 **Value Canvas — preencher obrigatoriamente:**
 
