@@ -1,0 +1,14 @@
+/* ============================================================
+   FONTS — IBM Plex Sans
+   SUBSTITUTION NOTE: no brand font files were provided with this
+   design system. IBM Plex Sans was chosen as the nearest
+   free/Google-Fonts match to a neutral, technical grotesque
+   appropriate for industrial control software. It is the single
+   typeface for the whole system — numeric/live readouts use the
+   same family as UI text (see tokens/typography.css). Loaded from
+   Google Fonts CDN below. Flag: if WEG has a licensed corporate
+   typeface, swap it in here and update --font-sans in
+   tokens/typography.css — no other file needs to change.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");

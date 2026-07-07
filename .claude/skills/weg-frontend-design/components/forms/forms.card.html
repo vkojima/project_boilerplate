@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" viewport="700x280" name="Forms" subtitle="Input, Select, Checkbox, Radio, Switch" -->
+<html><head>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+  <style>body{margin:0;background:var(--bg-canvas);padding:16px;font-family:var(--font-sans)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin-bottom:16px}
+  .row{display:flex;gap:20px;align-items:center}
+  </style>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Input, Select, Checkbox, Radio, Switch } = window.WEGFrontendDesignSystem_21dab7;
+    function App(){
+      const [c, setC] = React.useState(true);
+      const [r, setR] = React.useState('c');
+      const [sw, setSw] = React.useState(true);
+      return <div>
+        <div className="grid">
+          <Input label="Temperatura máxima" defaultValue="90" unit="°C" />
+          <Input label="Nome da linha" error="Campo obrigatório" />
+          <Select label="Linha" value="l3" onChange={()=>{}} options={[{value:'l1',label:'Linha 1'},{value:'l3',label:'Linha 3'}]} />
+          <Input label="Indisponível" disabled placeholder="—" />
+        </div>
+        <div className="row">
+          <Checkbox label="Notificar por e-mail" checked={c} onChange={e=>setC(e.target.checked)} />
+          <Radio name="u" label="Celsius" checked={r==='c'} onChange={()=>setR('c')} />
+          <Radio name="u" label="Fahrenheit" checked={r==='f'} onChange={()=>setR('f')} />
+          <Switch label="Alertas sonoros" checked={sw} onChange={e=>setSw(e.target.checked)} />
+        </div>
+      </div>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body></html>

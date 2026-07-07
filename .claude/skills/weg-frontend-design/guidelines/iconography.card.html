@@ -1,0 +1,38 @@
+<!-- @dsCard group="Iconography" viewport="700x220" subtitle="Lucide, 2px outline stroke, 16/20/24px sizes, color = state" -->
+<html><head>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+  <script src="../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+  <style>body{margin:0;background:var(--bg-canvas);padding:16px;font-family:var(--font-sans)}
+  .row{display:flex;gap:20px;align-items:center;margin-bottom:14px}
+  .grid{display:flex;gap:18px;flex-wrap:wrap}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-tertiary);font:var(--text-caption)}
+  </style>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Icon } = window.WEGFrontendDesignSystem_21dab7;
+    const names = ['activity','alert-triangle','alert-octagon','check-circle-2','settings','gauge','thermometer','bell','users','wrench','power','play','pause','chart-line','factory','layout-grid','sliders-horizontal','shield-check'];
+    function App(){
+      return <div>
+        <div className="row">
+          <Icon name="activity" size={16} color="var(--text-secondary)" />
+          <Icon name="activity" size={20} color="var(--text-secondary)" />
+          <Icon name="activity" size={24} color="var(--text-secondary)" />
+          <Icon name="alert-triangle" size={20} color="var(--status-warning-strong)" />
+          <Icon name="alert-octagon" size={20} color="var(--status-critical-strong)" />
+          <Icon name="check-circle-2" size={20} color="var(--status-success-strong)" />
+        </div>
+        <div className="grid">
+          {names.map(n => (
+            <div className="cell" key={n}><Icon name={n} size={20} color="var(--text-primary)" />{n}</div>
+          ))}
+        </div>
+      </div>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body></html>

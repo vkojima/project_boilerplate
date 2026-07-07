@@ -111,6 +111,8 @@ main.py             # Entry point — orquestrador puro, sem try/except
 
 `main.py` adiciona `src/` ao `sys.path` → imports ficam como `from sim_cv.logs import setup_logger`.
 
+**Skill `weg-frontend-design`** (`.claude/skills/weg-frontend-design/`): design system oficial WEG para frontends industriais (HMI dashboards, analytics, configuração) — dark-mode-only, tokens de cor/tipografia/spacing, componentes prontos e guidelines de conteúdo pt-BR. Invocada automaticamente pelo Claude Code sempre que houver trabalho de UI/frontend neste projeto.
+
 ---
 
 ## Situações Comuns

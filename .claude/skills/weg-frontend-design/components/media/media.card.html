@@ -1,0 +1,49 @@
+<!-- @dsCard group="Components" viewport="700x460" name="Media (Cameras)" subtitle="CameraFeed tile + CameraGrid multi-view" -->
+<html><head>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+  <style>body{margin:0;background:var(--bg-canvas);padding:16px;font-family:var(--font-sans)}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+  .label{font:var(--text-label);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);margin-bottom:8px}
+  </style>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { CameraFeed, CameraGrid } = window.WEGFrontendDesignSystem_21dab7;
+    function App(){
+      return <div>
+        <div className="label">Estados individuais</div>
+        <div className="row">
+          <CameraFeed label="Câmera 1" zone="Entrada — Linha 3" status="live" timestamp="14:32:07" onExpand={() => {}} />
+          <CameraFeed label="Câmera 2" zone="Posto 2" status="recording" timestamp="14:32:07" onExpand={() => {}} />
+          <CameraFeed label="Câmera 3" zone="Saída" status="offline" />
+        </div>
+        <div className="label">Modo compacto (miniaturas)</div>
+        <div className="row" style={{ gridTemplateColumns: 'repeat(6,1fr)' }}>
+          <CameraFeed label="Câmera 1" status="live" compact />
+          <CameraFeed label="Câmera 2" status="recording" compact />
+          <CameraFeed label="Câmera 3" status="offline" compact />
+          <CameraFeed label="Câmera 4" status="live" compact />
+          <CameraFeed label="Câmera 5" status="recording" compact />
+          <CameraFeed label="Câmera 6" status="offline" compact />
+        </div>
+        <div className="label">Grade — múltiplas visões (CameraGrid)</div>
+        <CameraGrid
+          columns={4}
+          feeds={[
+            { id: 'c1', label: 'Câmera 1', zone: 'Entrada', status: 'live', timestamp: '14:32:07' },
+            { id: 'c2', label: 'Câmera 2', zone: 'Posto 1', status: 'live', timestamp: '14:32:07' },
+            { id: 'c3', label: 'Câmera 3', zone: 'Posto 2', status: 'recording', timestamp: '14:32:07' },
+            { id: 'c4', label: 'Câmera 4', zone: 'Saída', status: 'offline' },
+          ]}
+          onExpand={() => {}}
+        />
+      </div>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body></html>

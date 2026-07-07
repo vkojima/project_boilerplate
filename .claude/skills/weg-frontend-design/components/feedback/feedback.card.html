@@ -1,0 +1,34 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Feedback" subtitle="Toast, Dialog, Tooltip, AlarmBanner" -->
+<html><head>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+  <style>body{margin:0;background:var(--bg-canvas);padding:16px;font-family:var(--font-sans)}
+  .col{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+  </style>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Toast, AlarmBanner, Tooltip, IconButton, Button } = window.WEGFrontendDesignSystem_21dab7;
+    function App(){
+      return <div>
+        <div className="col">
+          <AlarmBanner severity="critical" message="Parada não programada — Linha 3, Posto 2" timestamp="14:32:07" onAcknowledge={()=>{}} />
+          <AlarmBanner severity="warning" message="Temperatura do forno acima do limite" timestamp="14:12:41" />
+        </div>
+        <div className="col" style={{flexDirection:'row'}}>
+          <Toast status="success" title="Configuração salva" message="Limite atualizado com sucesso." onClose={()=>{}} />
+          <Toast status="critical" title="Falha de comunicação" message="Sensor TC-2201 offline há 2min." />
+        </div>
+        <div className="col" style={{flexDirection:'row', alignItems:'center'}}>
+          <Tooltip label="Última calibração: 12/06"><IconButton icon="info" label="Info" variant="outline" /></Tooltip>
+          <span style={{font:'var(--text-body-sm)', color:'var(--text-tertiary)'}}>hover the info icon →</span>
+        </div>
+      </div>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body></html>

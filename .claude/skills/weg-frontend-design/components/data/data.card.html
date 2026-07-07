@@ -1,0 +1,36 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Data Display" subtitle="Card, StatTile, Gauge, Sparkline, DataTable" -->
+<html><head>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+  <style>body{margin:0;background:var(--bg-canvas);padding:16px;font-family:var(--font-sans)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+  </style>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Card, StatTile, Gauge, Sparkline, DataTable, Badge } = window.WEGFrontendDesignSystem_21dab7;
+    function App(){
+      return <div>
+        <div className="grid">
+          <Card title="OEE"><StatTile label="OEE" value="87,2" unit="%" delta={{direction:'up',label:'+2,1 pts vs. ontem'}} /></Card>
+          <Card title="Temperatura"><Gauge value={86} min={0} max={120} unit="°C" status="warning" /></Card>
+          <Card title="Produção (7d)"><Sparkline data={[62,64,63,68,71,69,74,80,77]} status="success" width={200} /></Card>
+        </div>
+        <Card title="Linhas">
+          <DataTable
+            columns={[{key:'line',label:'Linha'},{key:'oee',label:'OEE',align:'right',mono:true},{key:'status',label:'Status'}]}
+            rows={[
+              {line:'Linha 1', oee:'91,2%', status: <Badge status="success">Em operação</Badge>},
+              {line:'Linha 3', oee:'—', status: <Badge status="critical">Parada</Badge>},
+            ]}
+          />
+        </Card>
+      </div>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body></html>

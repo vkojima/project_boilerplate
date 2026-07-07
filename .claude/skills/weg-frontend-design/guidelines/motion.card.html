@@ -1,0 +1,13 @@
+<!-- @dsCard group="Spacing" viewport="700x140" name="Motion" subtitle="Fast, no bounce — fade/settle only" -->
+<html><head><link rel="stylesheet" href="../styles.css"><style>
+  body{margin:0;padding:16px;background:var(--bg-canvas);display:flex;gap:16px;font-family:var(--font-sans);align-items:center}
+  .chip{padding:8px 14px;border-radius:var(--radius-full);background:var(--status-info-bg);color:var(--status-info-strong);font:var(--text-label)}
+  @keyframes pulse{0%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
+  .a1{animation:pulse var(--duration-fast) var(--ease-out)}
+  .a2{animation:pulse var(--duration-base) var(--ease-standard)}
+  .a3{animation:pulse var(--duration-slow) var(--ease-standard)}
+</style></head><body>
+  <div class="chip a1">100ms fast</div>
+  <div class="chip a2">180ms base</div>
+  <div class="chip a3">280ms slow</div>
+</body></html>

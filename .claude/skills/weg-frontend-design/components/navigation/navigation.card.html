@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Navigation" subtitle="TopNav, Tabs" -->
+<html><head>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+  <style>body{margin:0;background:var(--bg-canvas)}
+  .pad{padding:16px}
+  </style>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { TopNav, Tabs } = window.WEGFrontendDesignSystem_21dab7;
+    function App(){
+      const [k, setK] = React.useState('dashboard');
+      const [t, setT] = React.useState('week');
+      return <div>
+        <TopNav
+          items={[{key:'dashboard',label:'Painel',icon:'layout-grid'},{key:'analytics',label:'Análises',icon:'chart-line'},{key:'config',label:'Configuração',icon:'settings'}]}
+          activeKey={k} onSelect={setK}
+          location={{ factory: 'Fábrica II', line: 'Linha 3', station: 'Posto 2' }}
+          userName="Carlos Souza"
+        />
+        <div className="pad">
+          <Tabs items={[{key:'day',label:'Dia'},{key:'week',label:'Semana'},{key:'month',label:'Mês'}]} activeKey={t} onSelect={setT} />
+        </div>
+      </div>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body></html>
