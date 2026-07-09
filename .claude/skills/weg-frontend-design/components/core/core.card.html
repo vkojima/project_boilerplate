@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="700x260" name="Core" subtitle="Button, IconButton, Badge, Tag, Avatar" -->
+<html><head>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+  <style>body{margin:0;background:var(--bg-canvas);padding:16px;font-family:var(--font-sans)}
+  .row{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+  </style>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button, IconButton, Badge, Tag, Avatar } = window.WEGFrontendDesignSystem_21dab7;
+    function App(){
+      return <div>
+        <div className="row">
+          <Button variant="primary" icon="check-circle-2">Confirmar</Button>
+          <Button variant="secondary">Cancelar</Button>
+          <Button variant="ghost">Ver detalhes</Button>
+          <Button variant="danger" icon="power">Parar linha</Button>
+          <Button variant="primary" size="sm">Aplicar</Button>
+          <Button variant="secondary" disabled>Indisponível</Button>
+        </div>
+        <div className="row">
+          <IconButton icon="settings" label="Configurações" />
+          <IconButton icon="bell" label="Alarmes" active variant="outline" />
+          <IconButton icon="filter" label="Filtrar" size="sm" />
+          <Badge status="success">Em operação</Badge>
+          <Badge status="warning">Em alerta</Badge>
+          <Badge status="critical">Parada</Badge>
+          <Badge status="info">Manutenção</Badge>
+          <Badge status="idle">Offline</Badge>
+        </div>
+        <div className="row">
+          <Tag>Linha 3</Tag>
+          <Tag onRemove={() => {}}>Turno A</Tag>
+          <Avatar name="Carlos Souza" />
+          <Avatar name="Ana" />
+          <Avatar />
+        </div>
+      </div>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body></html>

@@ -1,0 +1,48 @@
+/* ============================================================
+   SPACING / RADIUS / SHADOW / MOTION TOKENS
+   ============================================================ */
+
+:root {
+  /* ---- Spacing (4px base unit) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---- Corner radius ----
+     Deliberately between "square" and "pill" — 8px is the workhorse.
+     Controls slightly tighter than containers for visual balance. */
+  --radius-xs: 4px;   /* checkboxes, small chips */
+  --radius-sm: 6px;   /* buttons, inputs, tags */
+  --radius-md: 8px;   /* cards, menus, dialogs */
+  --radius-lg: 12px;  /* large panels, modals */
+  --radius-full: 999px; /* pills, switches, avatars, status dots */
+
+  /* ---- Elevation ----
+     Dark UI: elevation is mostly conveyed via --bg-surface-* steps.
+     Shadows are near-black and very low-spread, just enough to lift
+     a panel off the canvas — never a stylistic drop shadow. */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.6);
+
+  /* ---- Motion ----
+     Fast and functional — no bounce, no springs. Status/alarm changes
+     use a quick fade+scale; navigation uses a short cross-fade. */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --duration-fast: 100ms; /* @kind other */
+  --duration-base: 180ms; /* @kind other */
+  --duration-slow: 280ms; /* @kind other */
+
+  /* ---- Layout ---- */
+  --header-height: 56px;
+  --container-max: 1440px;
+}

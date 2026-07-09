@@ -1,0 +1,80 @@
+/* ============================================================
+   COLOR TOKENS — WEG Frontend Design System
+   Dark-mode-first, industrial HMI palette.
+   Base neutrals + a subdued WEG-blue accent scale + status colors
+   for alarms/telemetry. Kept deliberately low-saturation so a
+   handful of critical signals (alarms) can still stand out.
+   ============================================================ */
+
+:root {
+  /* ---- Base neutrals (backgrounds) ----
+     Near-black canvas with stepped-up "surface" levels instead of
+     drop shadows — elevation reads as a lighter panel, not a shadow. */
+  --bg-canvas: #08090b;        /* app background */
+  --bg-sunken: #050506;        /* recessed wells, code/mono readouts */
+  --bg-surface: #111318;       /* default panel/card */
+  --bg-surface-raised: #16181d;/* raised panel, popovers, modals */
+  --bg-surface-overlay: #1b1e24; /* dialogs, menus over other surfaces */
+  --bg-surface-hover: #1c1f25; /* hover fill on rows/cards */
+  --bg-surface-active: #22262d;/* pressed / selected fill */
+
+  /* ---- Borders ---- */
+  --border-subtle: #1e2127;
+  --border-default: #2a2e35;
+  --border-strong: #3a3f48;
+  --border-focus: #5aaaed;
+
+  /* ---- Text ---- */
+  --text-primary: #eef1f4;
+  --text-secondary: #a7afba;
+  --text-tertiary: #767e89;
+  --text-disabled: #454a52;
+  --text-on-accent: #06090d;
+
+  /* ---- WEG blue scale (brand accent, used sparingly) ----
+     Anchored to the real WEG brand blue (#00569D — sampled directly
+     from the official logo files in assets/), not an approximation.
+     400/500 are the working interactive tones (500 = exact brand
+     blue); 100/200 are tints for subtle fills/backgrounds; 700+ are
+     deep tones for pressed states or accenting on light surfaces. */
+  --blue-100: #ebf0f4;
+  --blue-200: #cbddeb;
+  --blue-300: #9dc5e7;
+  --blue-400: #5aaaed;
+  --blue-500: #00569d;  /* exact WEG brand blue */
+  --blue-600: #004680;  /* hover */
+  --blue-700: #003561;  /* active/pressed */
+  --blue-800: #022746;
+  --blue-900: #031c30;
+
+  /* ---- Semantic status (machine/alarm states) ----
+     Conventional industrial mapping: green=running/normal,
+     amber=warning/degraded, red=critical/fault, gray=offline/idle,
+     blue=informational. Colors are muted for the UI chrome but the
+     "-strong" variants are for badges/dots where full signal is needed. */
+  --status-success: #3f9d6b;
+  --status-success-strong: #4ecb8a;
+  --status-success-bg: rgba(63, 157, 107, 0.14);
+
+  --status-warning: #c99a3c;
+  --status-warning-strong: #e8b752;
+  --status-warning-bg: rgba(201, 154, 60, 0.14);
+
+  --status-critical: #cc4b3f;
+  --status-critical-strong: #ef5b4c;
+  --status-critical-bg: rgba(204, 75, 63, 0.15);
+
+  --status-info: var(--blue-400);
+  --status-info-strong: #5aaaed;
+  --status-info-bg: rgba(90, 170, 237, 0.14);
+
+  --status-idle: #6b7280;
+  --status-idle-strong: #8b93a1;
+  --status-idle-bg: rgba(107, 114, 128, 0.14);
+
+  /* ---- Overlay / scrim ---- */
+  --overlay-scrim: rgba(3, 4, 5, 0.72);
+
+  /* ---- Focus ring ---- */
+  --focus-ring: 0 0 0 3px rgba(90, 170, 237, 0.35);
+}

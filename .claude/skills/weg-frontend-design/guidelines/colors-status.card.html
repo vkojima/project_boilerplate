@@ -1,0 +1,13 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Machine Status" subtitle="Closed vocabulary: success · warning · critical · info · idle" -->
+<html><head><link rel="stylesheet" href="../styles.css"><style>
+  body{margin:0;padding:16px;background:var(--bg-canvas);display:flex;gap:10px;font-family:var(--font-sans)}
+  .card{flex:1;border-radius:var(--radius-md);padding:12px;display:flex;flex-direction:column;gap:8px}
+  .dot{width:10px;height:10px;border-radius:var(--radius-full)}
+  .label{font:var(--text-label);color:var(--text-secondary);text-transform:uppercase;letter-spacing:var(--letter-spacing-label)}
+</style></head><body>
+  <div class="card" style="background:var(--status-success-bg)"><div class="dot" style="background:var(--status-success-strong)"></div><div class="label" style="color:var(--status-success-strong)">Em operação</div></div>
+  <div class="card" style="background:var(--status-warning-bg)"><div class="dot" style="background:var(--status-warning-strong)"></div><div class="label" style="color:var(--status-warning-strong)">Em alerta</div></div>
+  <div class="card" style="background:var(--status-critical-bg)"><div class="dot" style="background:var(--status-critical-strong)"></div><div class="label" style="color:var(--status-critical-strong)">Parada</div></div>
+  <div class="card" style="background:var(--status-info-bg)"><div class="dot" style="background:var(--status-info-strong)"></div><div class="label" style="color:var(--status-info-strong)">Manutenção</div></div>
+  <div class="card" style="background:var(--status-idle-bg)"><div class="dot" style="background:var(--status-idle-strong)"></div><div class="label" style="color:var(--status-idle-strong)">Offline</div></div>
+</body></html>

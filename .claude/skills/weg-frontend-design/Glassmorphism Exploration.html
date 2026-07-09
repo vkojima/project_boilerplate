@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="design_doc_mode" content="canvas">
+<title>WEG — Exploração: Glassmorphism sutil</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js"></script>
+<script src="_ds_bundle.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  html, body { margin: 0; background: #030405; }
+  .frame-label {
+    position: absolute; top: -30px; left: 0;
+    font: 600 13px var(--font-sans); color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+  }
+  .frame {
+    position: absolute; width: 1440px; height: 640px;
+    border-radius: var(--radius-lg); overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+</style>
+</head>
+<body>
+<div id="root" style="position:relative; width:5000px; height:2400px;"></div>
+<script type="text/babel">
+const { Card, StatTile, Gauge, Badge, Icon, Button, TopNav, AlarmBanner } = window.WEGFrontendDesignSystem_21dab7;
+
+// Shared ambient background so both variants sit on the same real dashboard
+// context — glass only reads as "glass" when there is something behind it
+// to distort. Kept dark + low-saturation blue, nothing decorative.
+function AmbientBg() {
+  return (
+    <div style={{
+      position: 'absolute', inset: 0,
+      background: `
+        radial-gradient(ellipse 900px 500px at 18% 12%, rgba(0,86,157,0.16), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 82% 85%, rgba(0,86,157,0.10), transparent 60%),
+        var(--bg-canvas)
+      `,
+    }} />
+  );
+}
+
+const postos = [
+  { name: 'Posto 1', status: 'success', temp: '62,1', speed: '1.204' },
+  { name: 'Posto 2', status: 'warning', temp: '86,2', speed: '980' },
+  { name: 'Posto 3', status: 'critical', temp: '—', speed: '0' },
+];
+
+// ---- Variant A: baseline (current system, flat opaque surfaces) ----
+function Baseline() {
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <AmbientBg />
+      <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <TopNav
+          items={[{ key: 'dashboard', label: 'Painel', icon: 'layout-grid' }, { key: 'analytics', label: 'Análises', icon: 'chart-line' }, { key: 'config', label: 'Configuração', icon: 'settings' }]}
+          activeKey="dashboard"
+          location={{ factory: 'Fábrica II', line: 'Linha 3', station: 'Todos os postos' }}
+          userName="Carlos Souza"
+        />
+        <div style={{ flex: 1, padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <AlarmBanner severity="critical" message="Parada não programada — Linha 3, Posto 3" timestamp="14:32:07" onAcknowledge={() => {}} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
+            <Card title="OEE da linha"><StatTile label="OEE" value="87,2" unit="%" delta={{ direction: 'up', label: '+2,1 pts' }} /></Card>
+            <Card title="Produção"><StatTile label="Unidades / turno" value="4.812" unit="un" delta={{ direction: 'up', label: '+180 vs. meta' }} /></Card>
+            <Card title="Temperatura"><Gauge value={86} min={0} max={120} unit="°C" status="warning" size={100} /></Card>
+            <Card title="Pressão"><Gauge value={62} min={0} max={100} unit="bar" status="success" size={100} /></Card>
+          </div>
+          <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+            {postos.map(p => (
+              <Card key={p.name} title={p.name} action={<Badge status={p.status}>{{success:'Em operação',warning:'Em alerta',critical:'Parada'}[p.status]}</Badge>}>
+                <div style={{ display: 'flex', gap: 20 }}>
+                  <div><span style={{ font: 'var(--text-label)', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>Temp.</span><div style={{ font: 'var(--text-mono-md)', color: 'var(--text-primary)' }}>{p.temp} °C</div></div>
+                  <div><span style={{ font: 'var(--text-label)', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>Vel.</span><div style={{ font: 'var(--text-mono-md)', color: 'var(--text-primary)' }}>{p.speed} rpm</div></div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---- Variant B: subtle glass ----
+// Restrained treatment: translucent surface (6–9% white over the ambient
+// glow), backdrop-blur, hairline border a touch brighter than default,
+// no color tint added by the glass itself (color comes only from the
+// scene behind it — status colors, the ambient glow). Applied to
+// elevated/floating surfaces only (top nav, alarm banner, dialogs) is the
+// recommended real use — here it's also pushed onto ordinary cards so the
+// effect is easy to judge at a glance.
+const glassStyle = {
+  background: 'rgba(255,255,255,0.045)',
+  backdropFilter: 'blur(16px) saturate(130%)',
+  WebkitBackdropFilter: 'blur(16px) saturate(130%)',
+  border: '1px solid rgba(255,255,255,0.09)',
+  boxShadow: '0 1px 0 0 rgba(255,255,255,0.04) inset, 0 12px 24px -12px rgba(0,0,0,0.5)',
+};
+
+function Glass() {
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <AmbientBg />
+      <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ ...glassStyle, borderRadius: 0, borderLeft: 'none', borderRight: 'none', borderTop: 'none' }}>
+          <TopNav
+            items={[{ key: 'dashboard', label: 'Painel', icon: 'layout-grid' }, { key: 'analytics', label: 'Análises', icon: 'chart-line' }, { key: 'config', label: 'Configuração', icon: 'settings' }]}
+            activeKey="dashboard"
+            location={{ factory: 'Fábrica II', line: 'Linha 3', station: 'Todos os postos' }}
+            userName="Carlos Souza"
+            style={{ background: 'transparent', borderBottom: 'none' }}
+          />
+        </div>
+        <div style={{ flex: 1, padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <AlarmBanner severity="critical" message="Parada não programada — Linha 3, Posto 3" timestamp="14:32:07" onAcknowledge={() => {}}
+            style={{ ...glassStyle, background: 'rgba(204,75,63,0.10)', borderColor: 'rgba(239,91,76,0.25)' }} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
+            <Card title="OEE da linha" style={glassStyle}><StatTile label="OEE" value="87,2" unit="%" delta={{ direction: 'up', label: '+2,1 pts' }} /></Card>
+            <Card title="Produção" style={glassStyle}><StatTile label="Unidades / turno" value="4.812" unit="un" delta={{ direction: 'up', label: '+180 vs. meta' }} /></Card>
+            <Card title="Temperatura" style={glassStyle}><Gauge value={86} min={0} max={120} unit="°C" status="warning" size={100} /></Card>
+            <Card title="Pressão" style={glassStyle}><Gauge value={62} min={0} max={100} unit="bar" status="success" size={100} /></Card>
+          </div>
+          <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+            {postos.map(p => (
+              <Card key={p.name} title={p.name} style={glassStyle} action={<Badge status={p.status}>{{success:'Em operação',warning:'Em alerta',critical:'Parada'}[p.status]}</Badge>}>
+                <div style={{ display: 'flex', gap: 20 }}>
+                  <div><span style={{ font: 'var(--text-label)', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>Temp.</span><div style={{ font: 'var(--text-mono-md)', color: 'var(--text-primary)' }}>{p.temp} °C</div></div>
+                  <div><span style={{ font: 'var(--text-label)', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>Vel.</span><div style={{ font: 'var(--text-mono-md)', color: 'var(--text-primary)' }}>{p.speed} rpm</div></div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---- Variant C: glass reserved for elevated surfaces only ----
+// The recommended real-world rule: keep base content cards flat/opaque
+// (so dense data stays legible and cheap to render), reserve the glass
+// treatment for things that float ABOVE content — the top nav, alarm
+// banner, dropdowns, dialogs. This is what C shows: opaque cards, glass
+// chrome only on the nav + banner.
+function Hybrid() {
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <AmbientBg />
+      <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ ...glassStyle, borderRadius: 0, borderLeft: 'none', borderRight: 'none', borderTop: 'none' }}>
+          <TopNav
+            items={[{ key: 'dashboard', label: 'Painel', icon: 'layout-grid' }, { key: 'analytics', label: 'Análises', icon: 'chart-line' }, { key: 'config', label: 'Configuração', icon: 'settings' }]}
+            activeKey="dashboard"
+            location={{ factory: 'Fábrica II', line: 'Linha 3', station: 'Todos os postos' }}
+            userName="Carlos Souza"
+            style={{ background: 'transparent', borderBottom: 'none' }}
+          />
+        </div>
+        <div style={{ flex: 1, padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <AlarmBanner severity="critical" message="Parada não programada — Linha 3, Posto 3" timestamp="14:32:07" onAcknowledge={() => {}}
+            style={{ ...glassStyle, background: 'rgba(204,75,63,0.10)', borderColor: 'rgba(239,91,76,0.25)' }} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
+            <Card title="OEE da linha"><StatTile label="OEE" value="87,2" unit="%" delta={{ direction: 'up', label: '+2,1 pts' }} /></Card>
+            <Card title="Produção"><StatTile label="Unidades / turno" value="4.812" unit="un" delta={{ direction: 'up', label: '+180 vs. meta' }} /></Card>
+            <Card title="Temperatura"><Gauge value={86} min={0} max={120} unit="°C" status="warning" size={100} /></Card>
+            <Card title="Pressão"><Gauge value={62} min={0} max={100} unit="bar" status="success" size={100} /></Card>
+          </div>
+          <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+            {postos.map(p => (
+              <Card key={p.name} title={p.name} action={<Badge status={p.status}>{{success:'Em operação',warning:'Em alerta',critical:'Parada'}[p.status]}</Badge>}>
+                <div style={{ display: 'flex', gap: 20 }}>
+                  <div><span style={{ font: 'var(--text-label)', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>Temp.</span><div style={{ font: 'var(--text-mono-md)', color: 'var(--text-primary)' }}>{p.temp} °C</div></div>
+                  <div><span style={{ font: 'var(--text-label)', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>Vel.</span><div style={{ font: 'var(--text-mono-md)', color: 'var(--text-primary)' }}>{p.speed} rpm</div></div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Root() {
+  const frames = [
+    { id: '1a', label: 'A — Base atual (opaco, sem glass)', x: 0, Comp: Baseline },
+    { id: '1b', label: 'B — Glass em todos os painéis (mais expressivo)', x: 1500, Comp: Glass },
+    { id: '1c', label: 'C — Glass só em elementos flutuantes (recomendado)', x: 3000, Comp: Hybrid },
+  ];
+  return (
+    <React.Fragment>
+      {frames.map(f => (
+        <div key={f.id} id={f.id} className="frame" style={{ left: f.x, top: 40 }}>
+          <span className="frame-label">{f.label}</span>
+          <f.Comp />
+        </div>
+      ))}
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Root />);
+</script>
+</body>
+</html>
